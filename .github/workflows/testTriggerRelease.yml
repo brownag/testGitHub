@@ -1,7 +1,7 @@
 on:
   push:
-    tags:
-      - 'testprefix*' 
+#    tags:
+#      - 'testprefix*' 
 
 name: testTriggerRelease
 
