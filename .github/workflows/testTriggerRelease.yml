@@ -13,7 +13,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - run: echo 'foo' > bar
-      - run: git add -a
+      - run: git add -A
       - run: git commit -m "baz"
       - name: Create Release
         id: create_release
