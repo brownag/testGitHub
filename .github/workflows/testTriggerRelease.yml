@@ -10,10 +10,10 @@ jobs:
     name: Upload Release Asset
     runs-on: ubuntu-latest
     steps:
-      - run: echo 'foo' > bar
       - name: Checkout code
         uses: actions/checkout@v2
-      - run: git add bar
+      - run: echo 'foo' > bar
+      - run: git add -a
       - run: git commit -m "baz"
       - name: Create Release
         id: create_release
