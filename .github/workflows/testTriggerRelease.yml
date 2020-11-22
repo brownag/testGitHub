@@ -13,6 +13,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - run: echo 'foo' > bar
+      - run: git config --global user.email "github-actions@github.com"
+      - run: git config --global user.name "RobotBobert"
       - run: git add -A
       - run: git commit -m "baz"
       - name: Create Release
