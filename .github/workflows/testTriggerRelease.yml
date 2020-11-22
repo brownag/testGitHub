@@ -33,7 +33,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: https://api.github.com/brownag/testActions/releases/tag/refs%2Fheads%2Fmain
+          upload_url: https://api.github.com/repos/brownag/testActions/releases/tag/refs%2Fheads%2Fmain
           asset_path: ./bar
           asset_name: bar
           asset_content_type: text/plain
