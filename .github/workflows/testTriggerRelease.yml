@@ -17,23 +17,12 @@ jobs:
       - run: git config --global user.name "RobotBobert"
       - run: git add -A
       - run: git commit -m "baz"
-      #- name: Create Release
-      #  id: create_release
-      #  uses: actions/create-release@v1
-      #  env:
-      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #  with:
-      #    tag_name: ${{ github.ref }}
-      #    release_name: Release ${{ github.ref }}
-      #    draft: false
-      #    prerelease: false
-      - name: Upload Release Asset
-        id: upload-release-asset 
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
         with:
-          upload_url: https://api.github.com/repos/brownag/testActions/releases/tag/refs%2Fheads%2Fmain
-          asset_path: ./bar
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: target/release/bar
           asset_name: bar
-          asset_content_type: text/plain
+          tag: ${{ github.ref }}
+          overwrite: true
+          body: "This is my release text"
