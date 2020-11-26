@@ -1,0 +1,33 @@
+name: testDecktape
+
+# manual dispatch from actions tab
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: '12'
+      - run: npm install decktape
+      - run: |
+          for i in $(ls decktape/input/*.html) 
+          do
+          	echo "Processing $i..."
+          	filename=$(basename "$i")
+          	extension="${filename##*.}"
+          	filename="${filename%.*}"
+          	`npm bin`/decktape remark --chrome-arg=--allow-file-access-from-files $i $filename.pdf
+          done
+          mkdir decktape/output
+          mv *.pdf decktape/output
+      - run: git add decktape/output/*.pdf
+      - run: now = $(date)
+      - run: git commit -m "Built Decktape PDF output ($now)"
+    # identify all *.html files in input folder
+    # run decktape on each, move PDF to output folder
+    # delete input? not "easy" unless self-contained
