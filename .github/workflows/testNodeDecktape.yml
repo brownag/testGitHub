@@ -25,11 +25,13 @@ jobs:
           done
           mkdir decktape/output
           mv *.pdf decktape/output
-      - run: git config --global user.email "github-actions@github.com"
-      - run: git config --global user.name "DecktapeBot"
-      - run: git add decktape/output/*.pdf
-      - run: now=$(date)
-      - run: git commit -m "Built Decktape PDF output ($now)"
+      - run: |
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "DecktapeBot"
+          git add decktape/output/*.pdf
+          now=$(date)
+          git commit -m "Built Decktape PDF output ($now)"
+          git push
     # identify all *.html files in input folder
     # run decktape on each, move PDF to output folder
     # delete input? not "easy" unless self-contained
