@@ -26,7 +26,7 @@ jobs:
           mkdir decktape/output
           mv *.pdf decktape/output
       - run: git add decktape/output/*.pdf
-      - run: now = $(date)
+      - run: now=$(date)
       - run: git commit -m "Built Decktape PDF output ($now)"
     # identify all *.html files in input folder
     # run decktape on each, move PDF to output folder
