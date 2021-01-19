@@ -52,4 +52,4 @@ jobs:
           
       - name: Push results
         run: |
-          git push origin ${{ env.BRANCH_NAME }} || echo "No changes to commit"
+          git push origin HEAD:${{ env.BRANCH_NAME }} || echo "No changes to commit"
