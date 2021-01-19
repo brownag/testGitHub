@@ -44,7 +44,7 @@ jobs:
         run: |
           git config user.email "github-actions@github.com"
           git config user.name "PRBot"
-          git pull --ff-only origin HEAD:${{ env.BRANCH_NAME }}
+          git pull --rebase origin HEAD:${{ env.BRANCH_NAME }}
           echo ${{ env.BRANCH_NAME }}
           date > foo.txt
           git add foo.txt
@@ -52,4 +52,4 @@ jobs:
           
       - name: Push results
         run: |
-          git push origin HEAD:${{ env.BRANCH_NAME }} || echo "No changes to commit"
+          git push origin ${{ env.BRANCH_NAME }} || echo "No changes to commit"
