@@ -31,6 +31,7 @@ jobs:
         run: |
           git config user.email "github-actions@github.com"
           git config user.name "PRBot"
+          git pull origin HEAD:${{ github.head_ref }}
           date > foo.txt
           git add foo.txt
           git commit -m 'Update TXT files' || echo "No changes to commit"
