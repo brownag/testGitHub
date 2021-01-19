@@ -25,19 +25,31 @@ jobs:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
+      - name: Get branch name (merge)
+        if: github.event_name != 'pull_request'
+        shell: bash
+        run: echo "BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/} | tr / -)" >> $GITHUB_ENV
+
+      - name: Get branch name (pull request)
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: echo "BRANCH_NAME=$(echo ${GITHUB_HEAD_REF} | tr / -)" >> $GITHUB_ENV
+
       - uses: actions/checkout@v2      
         with: 
           fetch-depth: '0'
           clean: 'false' 
-
       
       - name: Commit results
         run: |
           git config user.email "github-actions@github.com"
           git config user.name "PRBot"
-          git pull --ff-only origin HEAD:${{ github.head_ref }}
-          cat ${{ github.head_ref }}
+          git pull --ff-only origin HEAD:${{ env.BRANCH_NAME }}
+          echo ${{ env.BRANCH_NAME }}
           date > foo.txt
           git add foo.txt
           git commit -m 'Update TXT files' || echo "No changes to commit"
-          git push origin HEAD:${{ github.head_ref }} || echo "No changes to commit"
+          
+      - name: Push results
+        run: |
+          git push origin HEAD:${{ env.BRANCH_NAME }} || echo "No changes to commit"
