@@ -96,7 +96,7 @@ Routine soil descriptions are aggregated to create soil survey products.
 class: bodySlideNOBR
 &lt;br&gt;
 
-## Discretization of the soil body
+## Lumpers v.s. Splitters
 
 .pull-left[
 
@@ -113,14 +113,14 @@ class: bodySlideNOBR
 ---
 class: bodySlideNOBR
 &lt;br&gt;
-## Discretization of the soil body
+## Lumpers v.s. Splitters
 **Pedons** (source: FY2020 SQLite snapshots)
  - NASIS Pedon: 2,897,664 horizons in 573,919 NASIS pedons; ~5 layers each
- - KSSL/LDM: 410,011 horizons in 65,952 laboratory pedons; ~6.2 layers each
+ - KSSL/LDM: 410,011 horizons in 65,952 laboratory pedons; ~6 layers each
  
 **Components** (source: Soil Data Access)
  - SSURGO: 3,474,612 horizons in 868,508 components; ~4 layers each
- - STATSGO: 333,388 horizons in 102,729 components; ~3.25 layers each
+ - STATSGO: 333,388 horizons in 102,729 components; ~3 layers each
  
 **GlobalSoilMap** 
  - 6 standard depth intervals:&lt;br&gt;
@@ -132,6 +132,8 @@ class: bodySlide
 &lt;br&gt;
 
 ## Trends in "horizonation" schemes
+
+Average number of layers per component (per SSA), binned by decade (correlation year)
 
 ![](img/complayer_by_year.png)
 
@@ -253,15 +255,38 @@ Distributional assumption applies only to the _geometry_. Not horizon or aggrega
 ---
 class: bodySlideNOBR
 &lt;br&gt;
-## Thickness of Generalized Horizons
-n=1000 realizations for each of 4 profiles ("Minniecreek" full pedons in CA649)
+
+.center[
+
+#### "Normal" Boundaries
+
+&lt;img src="img/boundaries.gif" width="80%"/&gt;
+
+]
+
+---
+class: bodySlideNOBR
+&lt;br&gt;
+.center[
+
+#### Minniecreek Generalized Horizons
+
+&lt;img src="img/minniecreek_genhz.png" width="80%"/&gt;
+
+]
+
+---
+class: bodySlideNOBR
+&lt;br&gt;
+#### Thickness of Generalized Horizons
+n=100 realizations for each of 4 profiles 
 ![](img/thickness_genhz.png)
 
 ---
 class: bodySlideNOBR
 &lt;br&gt;
 
-## Organic Carbon Stocks
+#### Example: Organic Carbon Stocks
 n=10,000 aggregate carbon stocks; constant 2.5cm standard deviation  
 ![](img/carbon_stocks_lab.png)
 
@@ -269,7 +294,7 @@ n=10,000 aggregate carbon stocks; constant 2.5cm standard deviation
 class: bodySlideNOBR
 &lt;br&gt;
 
-## Organic Carbon Stocks 
+#### Example: Organic Carbon Stocks
 
 n=10,000 aggregate carbon stocks using field horizon boundary distinctness
 ![](img/carbon_stocks_lab_distinctness.png)
@@ -298,6 +323,8 @@ class: bodySlide
 ## Thank you!
 
 Feel free to contact me with comments/questions/criticism. 
+
+Presentation and related materials on GitHub: https://github.com/brownag/FieldNotes202108
 
 We also welcome you to take part in discussions related to {aqp} algorithms and {soilDB} data access methods on the GitHub issues pages:
 
